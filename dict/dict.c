@@ -18,15 +18,15 @@ Dict new_dict(int size) {
 
 ERROR_CODE dict_add(Dict dict, const char* key, void* value) {
     size_t dict_sz = dict->size;
-    if (node_find(dict->hashmap, key, dict_sz)) return ADD_ALREADY_EXISTS;
+    if (node_find(dict->hashmap, key, dict_sz)) return ERR_ADD_ALREADY_EXISTS;
     Node node_new = new_node(key, value);
     if (!node_new) return 1;
-    int index = index_from_hash(hashed(key), dict_sz);
+    uint64_t index = index_from_hash(hashed(key), dict_sz);
     dict->count++;
     if (!dict->hashmap[index]) {
         dict->hashmap[index] = node_new;
         if (dict->count >= dict->size - 1) {
-            size_t new_sz = next_prime(dict_sz * 2);
+            uint64_t new_sz = next_prime(dict_sz * 2);
             resize_dict(dict, new_sz);
         }
     }
@@ -38,12 +38,12 @@ ERROR_CODE dict_add(Dict dict, const char* key, void* value) {
 }
 
 ERROR_CODE dict_rem(Dict dict, const char* key) {
-    int index = index_from_hash(hashed(key), dict->size);
+    uint64_t index = index_from_hash(hashed(key), dict->size);
     Node target = node_find(dict->hashmap, key, dict->size);
-    if (target) node_del(target); else return 1;
+    if (target) node_del(target); else return ERR_REMOVE_NONEXISTENT;
     dict->hashmap[index] = NULL;
     dict->count--;
-    return 0;
+    return EXIT_SUCCESS;
 }
 
 Element dict_find(Dict dict, const char* key) {
@@ -62,7 +62,7 @@ void free_dict(Dict dict) {
 
 
 void reinsert_dict(Dict dict, Node keynode) {
-    int index = index_from_hash(hashed(keynode->key), dict->size);
+    uint64_t index = index_from_hash(hashed(keynode->key), dict->size);
     if (dict->hashmap[index])
         keynode->next = dict->hashmap[index];
     dict->hashmap[index] = keynode;
@@ -119,10 +119,10 @@ void print_dict(Dict dict, char* (*element_return)(void*)) {
     free(keys);
 }
 
-void resize_dict(Dict dict, const int new_size) {
+void resize_dict(Dict dict, const uint64_t new_size) {
     Node* old_dict = dict->hashmap;
     dict->hashmap = calloc(new_size, sizeof(Node));
-    int old_size = dict->size;
+    uint64_t old_size = dict->size;
     dict->size = new_size;
     for (int i = 0; i < old_size; i++) {
         for (Node keynode = old_dict[i]; keynode;) {

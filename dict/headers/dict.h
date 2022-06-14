@@ -7,7 +7,7 @@
 #define ER char*(*)(void*)
 typedef struct _Dict {
     Node* hashmap;
-    int size, count;
+    uint64_t size, count;
 } *Dict;
 
 //? Dict functions
@@ -19,5 +19,5 @@ void** dict_to_array(Dict dict, ER);
 char** dict_keys(Dict dict);
 void free_dict(Dict dict);
 void print_dict(Dict dict, ER);
-void resize_dict(Dict dict, const int new_size);
+void resize_dict(Dict dict, const uint64_t new_size);
 #endif

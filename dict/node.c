@@ -15,16 +15,15 @@ Node new_node(const char* key, void* value) {
     }
     node->next = NULL;
     node->element = value;
-    strcpy(node->key, key);
-    // memcpy(node->key, key, size);
+    memcpy(node->key, key, size);
     //? The commented out ones don't work with my GNU Clib
     // memccpy(node->key, key, 0, size);
     // memcpy_s(node->key, size, key, size);
     return node;
 }
 
-Node node_find(Node* nodes, const char* key, int size) {
-    int index = index_from_hash(hashed(key), size);
+Node node_find(Node* nodes, const char* key, size_t size) {
+    size_t index = index_from_hash(hashed(key), size);
     for (Node knode = nodes[index];knode;knode = knode->next)
         if (!memcmp(knode->key, key, strlen(key))) return knode;
     return NULL;

@@ -3,7 +3,7 @@
 
 typedef enum {
     _,
-    ADD_ALREADY_EXISTS,
-    NONEXISTENT
+    ERR_ADD_ALREADY_EXISTS,
+    ERR_REMOVE_NONEXISTENT
 }ERROR_CODE;
 #endif
