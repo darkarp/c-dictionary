@@ -1,3 +1,9 @@
 .vscode/*
 bin/*
 dist/*
+build/*
+*.d
+*.o
+venv/*
+*.pyd
+*.pyc
