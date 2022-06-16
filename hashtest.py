@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import calculations
 
 MAXITER = 3000
