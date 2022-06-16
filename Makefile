@@ -14,18 +14,15 @@ filesearch=	$(wildcard $1$2) $(foreach dir,$(wildcard $1*),$(call filesearch,$(d
 
 # check all subdirs for source files
 SOURCES		:=	$(call filesearch,$(SRC),*.c)	
-LIBSOURCES	:=	$(call filesearch,$(LIB),*.c)	
-TESTSOURCES	:=	$(call filesearch,$(TEST),*.c)	
+LIBSOURCES	:=	$(call filesearch,$(LIB),*.c)
 
 # remove main file					
 SOURCES		:=	$(filter-out %$(TARGET).c, $(SOURCES))									
-LIBSOURCES	:=	$(filter-out %test_io.c, $(LIBSOURCES))								
-TESTSOURCES	:=	$(filter-out %test_io.c, $(TESTSOURCES))								
+LIBSOURCES	:=	$(filter-out %test_io.c, $(LIBSOURCES))							
 
 # build object list
 OBJECTS:=	$(patsubst %.c, $(OBJ)/%.o, $(notdir $(SOURCES)))								
-LIBOBJECTS:=	$(patsubst %.c, $(OBJ)/%.o, $(notdir $(LIBSOURCES)))								
-TESTOBJECTS:=	$(patsubst %.c, $(OBJ)/%.o, $(notdir $(TESTSOURCES)))								
+LIBOBJECTS:=	$(patsubst %.c, $(OBJ)/%.o, $(notdir $(LIBSOURCES)))						
 
 # Create output directories
 create_output_directories:

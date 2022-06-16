@@ -5,7 +5,6 @@
 
 static PyObject* method_factors(PyObject* self, PyObject* args) {
     int number = 0;
-    int value_to_add = 0;
 
     // parse argument "number", k= unsigned long long without overflow check
     if (!PyArg_ParseTuple(args, "k", &number)) {
@@ -41,24 +40,6 @@ static PyObject* method_generate_modulos(PyObject* self, PyObject* args) {
     uint64_t list_size = PyList_GET_SIZE(factors);
     for (int i = 0; i < max_iter;i++) {
         unsigned long long factor = PyLong_AsLong(PyList_GetItem(factors, rand() % list_size));
-        PyList_Append(list, Py_BuildValue("i", (i * factor) % size));
-    }
-    return list;
-}
-
-static PyObject* method_unique_occurences(PyObject* self, PyObject* args) {
-    PyObject* factors = NULL;
-    int size = 0, max_iter = 0;
-    // parse argument "number"
-    // k= unsigned long long without overflow check
-    // O= PyObject*
-    if (!PyArg_ParseTuple(args, "Okk", &factors, &size, &max_iter)) {
-        return NULL;
-    }
-    PyObject* list = PyList_New(0);
-    uint64_t list_size = PyList_GET_SIZE(factors);
-    for (int i = 0; i < max_iter;i++) {
-        uint64_t factor = PyLong_AsLong(PyList_GetItem(factors, rand() % list_size));
         PyList_Append(list, Py_BuildValue("i", (i * factor) % size));
     }
     return list;

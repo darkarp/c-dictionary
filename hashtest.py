@@ -1,7 +1,6 @@
-import random
 import calculations
 
-MAXITER = 10000
+MAXITER = 3000
 
 ATOTAL = 4752
 BTOTAL = 4753
@@ -27,15 +26,15 @@ aindex, bindex, cindex = returnlists(afactors, bfactors)
 acount = len(set(aindex))
 bcount = len(set(bindex))
 ccount = len(set(cindex))
-acollisions = len(aindex)-acount
-bcollisions = len(bindex)-bcount
-ccollisions = len(cindex)-ccount
+acol = MAXITER-acount
+bcol = MAXITER-bcount
+ccol = MAXITER-ccount
 
-acolpercentage = 100*acollisions/MAXITER
-bcolpercentage = 100*bcollisions/MAXITER
-ccolpercentage = 100*ccollisions/MAXITER
+acolpercent = 100*acol/MAXITER
+bcolpercent = 100*bcol/MAXITER
+ccolpercent = 100*ccol/MAXITER
 
-
-print(f"Collisions in even non-primes: {acollisions} ({acolpercentage:.2f}%)")
-print(f"Collisions in odd non-primes: {bcollisions} ({bcolpercentage:.2f}%)")
-print(f"Collisions in primes: {ccollisions} ({ccolpercentage:.2f}%)")
+print(f"## Number of collisions for {MAXITER} insertions ##\n")
+print(f"Collisions in even non-primes = {ATOTAL}: {acol} ({acolpercent:.2f}%)")
+print(f"Collisions in odd non-primes = {BTOTAL}: {bcol} ({bcolpercent:.2f}%)")
+print(f"Collisions in primes = {CTOTAL}: {ccol} ({ccolpercent:.2f}%)")

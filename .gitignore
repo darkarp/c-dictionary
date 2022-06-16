@@ -1,9 +1,9 @@
 .vscode/*
-bin/*
-dist/*
 build/*
-*.d
-*.o
+dist/*
 venv/*
+bin/*
 *.pyd
 *.pyc
+*.d
+*.o

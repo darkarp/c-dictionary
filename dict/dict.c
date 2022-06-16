@@ -7,7 +7,7 @@
 #include <string.h>
 #include <stdio.h>
 
-Dict new_dict(int size) {
+Dict new_dict(uint64 size) {
     if (!size) size = DEFAULT_SIZE;
     Dict dict = malloc(sizeof(struct _Dict));
     dict->size = size;
@@ -17,16 +17,16 @@ Dict new_dict(int size) {
 }
 
 ERROR_CODE dict_add(Dict dict, const char* key, void* value) {
-    size_t dict_sz = dict->size;
+    uint64 dict_sz = dict->size;
     if (node_find(dict->hashmap, key, dict_sz)) return ERR_ADD_ALREADY_EXISTS;
     Node node_new = new_node(key, value);
     if (!node_new) return 1;
-    uint64_t index = index_from_hash(hashed(key), dict_sz);
+    uint64 index = index_from_hash(hashed(key), dict_sz);
     dict->count++;
     if (!dict->hashmap[index]) {
         dict->hashmap[index] = node_new;
         if (dict->count >= dict->size - 1) {
-            uint64_t new_sz = next_prime(dict_sz * 2);
+            uint64 new_sz = next_prime(dict_sz * 2);
             resize_dict(dict, new_sz);
         }
     }
@@ -38,7 +38,7 @@ ERROR_CODE dict_add(Dict dict, const char* key, void* value) {
 }
 
 ERROR_CODE dict_rem(Dict dict, const char* key) {
-    uint64_t index = index_from_hash(hashed(key), dict->size);
+    uint64 index = index_from_hash(hashed(key), dict->size);
     Node target = node_find(dict->hashmap, key, dict->size);
     if (target) node_del(target); else return ERR_REMOVE_NONEXISTENT;
     dict->hashmap[index] = NULL;
@@ -52,7 +52,7 @@ Element dict_find(Dict dict, const char* key) {
 }
 
 void free_dict(Dict dict) {
-    for (int i = 0; i < dict->size; i++)
+    for (int i = 0; i < (int)dict->size; i++)
         if (dict->hashmap[i]) node_del(dict->hashmap[i]);
     free(dict->hashmap);
     dict->hashmap = 0;
@@ -62,7 +62,7 @@ void free_dict(Dict dict) {
 
 
 void reinsert_dict(Dict dict, Node keynode) {
-    uint64_t index = index_from_hash(hashed(keynode->key), dict->size);
+    uint64 index = index_from_hash(hashed(keynode->key), dict->size);
     if (dict->hashmap[index])
         keynode->next = dict->hashmap[index];
     dict->hashmap[index] = keynode;
@@ -74,7 +74,7 @@ void** dict_to_array(Dict dict, char* (*element_return)(void*)) {
     void** listed_dict = calloc(sizeof(void*), dict->count);
     Node* nodes = dict->hashmap;
     int placed = 0;
-    for (int i = 0; i < dict->size; i++) {
+    for (int i = 0; i < (int)dict->size; i++) {
         Node keynode = nodes[i];
         do {
             if (keynode) {
@@ -106,7 +106,7 @@ char* basic_element_return(Element element) {
 void print_dict(Dict dict, char* (*element_return)(void*)) {
     if (!element_return) element_return = basic_element_return;
     char** keys = dict_keys(dict);
-    for (int i = 0; i < dict->count; i++) {
+    for (int i = 0; i < (int)dict->count; i++) {
         Node node = node_find(dict->hashmap, keys[i], dict->size);
         if (!node) {
             printf("No node with this key: %s\n", keys[i]);
@@ -119,12 +119,12 @@ void print_dict(Dict dict, char* (*element_return)(void*)) {
     free(keys);
 }
 
-void resize_dict(Dict dict, const uint64_t new_size) {
+void resize_dict(Dict dict, const uint64 new_size) {
     Node* old_dict = dict->hashmap;
     dict->hashmap = calloc(new_size, sizeof(Node));
-    uint64_t old_size = dict->size;
+    uint64 old_size = dict->size;
     dict->size = new_size;
-    for (int i = 0; i < old_size; i++) {
+    for (int i = 0; i < (int)old_size; i++) {
         for (Node keynode = old_dict[i]; keynode;) {
             Node next = keynode->next;
             keynode->next = NULL;

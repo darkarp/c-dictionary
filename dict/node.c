@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 Node new_node(const char* key, void* value) {
-    size_t size = strlen(key) + 1;
+    uint64 size = strlen(key) + 1;
     Node node = malloc(sizeof(struct _Node));
     if (!node) return NULL;
     node->key = calloc(size, sizeof(char));
@@ -22,8 +22,8 @@ Node new_node(const char* key, void* value) {
     return node;
 }
 
-Node node_find(Node* nodes, const char* key, size_t size) {
-    size_t index = index_from_hash(hashed(key), size);
+Node node_find(Node* nodes, const char* key, uint64 size) {
+    uint64 index = index_from_hash(hashed(key), size);
     for (Node knode = nodes[index];knode;knode = knode->next)
         if (!memcmp(knode->key, key, strlen(key))) return knode;
     return NULL;

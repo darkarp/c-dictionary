@@ -26,7 +26,7 @@ char* user_return_email(User user) {
 
 int main() {
     Dict dict = new_dict(DEFAULT_SIZE);
-    printf("Dict created with size: %d\n\n", dict->size);
+    printf("Dict created with size: %llu\n\n", dict->size);
 
     //? Creating our user objects to be used as values for dict
     User john = new_user("John", "arrgh", "john@hotmail.com");

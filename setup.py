@@ -1,4 +1,4 @@
-from distutils.core import setup, Extension
+from setuptools import Extension, setup
 
 
 def main():

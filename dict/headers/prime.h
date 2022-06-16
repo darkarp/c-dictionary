@@ -2,11 +2,11 @@
 #define PRIME_H
 
 #include <stdbool.h>
-#include <stdint.h>
+#include "types.h"
 #include <stdio.h>
 #include <math.h>
 
-bool is_prime(uint64_t n);
-uint64_t next_prime(uint64_t n);
+bool is_prime(uint64 n);
+uint64 next_prime(uint64 n);
 
 #endif

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 
-bool is_prime(uint64_t n)
+bool is_prime(uint64 n)
 {
     if (n <= 3) return (bool)(n > 1);
     if (!(n % 2) || !(n % 3)) return false;
@@ -14,7 +14,7 @@ bool is_prime(uint64_t n)
     return true;
 }
 
-uint64_t next_prime(uint64_t n)
+uint64 next_prime(uint64 n)
 {
     for (; !is_prime(++n););
     return n;

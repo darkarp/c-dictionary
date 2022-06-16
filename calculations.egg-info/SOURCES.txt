@@ -1,0 +1,11 @@
+README.md
+calculations.c
+setup.py
+calculations.egg-info/PKG-INFO
+calculations.egg-info/SOURCES.txt
+calculations.egg-info/dependency_links.txt
+calculations.egg-info/top_level.txt
+dict/dict.c
+dict/hashutils.c
+dict/node.c
+dict/prime.c
