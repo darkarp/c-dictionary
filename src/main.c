@@ -51,9 +51,9 @@ int main() {
     printf("Remove success, code: %d\n", john_removed);
     printf("Remove failure (key doesn't exist), code: %d\n\n", nonexistent_removed);
 
-    //* Searching means finding a node, dict_find will already return node->element (the value from k:v pair)
-    User john_user = dict_find(dict, "John");
-    User amber_user = dict_find(dict, "Amber");
+    //* Searching means finding a node, dict_get will already return node->element (the value from k:v pair)
+    User john_user = dict_get(dict, "John");
+    User amber_user = dict_get(dict, "Amber");
     printf("Find success, returns pointer: %p\n", (void*)amber_user);
     printf("Find failure, returns pointer: %p\n\n", (void*)john_user);
 

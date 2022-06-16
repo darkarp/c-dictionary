@@ -2,7 +2,6 @@
 #define DICT_NODE_H
 #include "errors.h"
 #include "types.h"
-#include <stdlib.h>
 
 typedef void* Element;
 

@@ -46,26 +46,28 @@ ERROR_CODE dict_rem(Dict dict, const char* key) {
     return EXIT_SUCCESS;
 }
 
-Element dict_find(Dict dict, const char* key) {
+Element dict_get(Dict dict, const char* key) {
     Node node = node_find(dict->hashmap, key, dict->size);
     if (node) return node->element; else return NULL;
 }
 
-void free_dict(Dict dict) {
+ERROR_CODE free_dict(Dict dict) {
     for (int i = 0; i < (int)dict->size; i++)
         if (dict->hashmap[i]) node_del(dict->hashmap[i]);
     free(dict->hashmap);
     dict->hashmap = 0;
     free(dict);
+    return EXIT_SUCCESS;
 }
 
 
 
-void reinsert_dict(Dict dict, Node keynode) {
+ERROR_CODE reinsert_dict(Dict dict, Node keynode) {
     uint64 index = index_from_hash(hashed(keynode->key), dict->size);
     if (dict->hashmap[index])
         keynode->next = dict->hashmap[index];
     dict->hashmap[index] = keynode;
+    return EXIT_SUCCESS;
 }
 
 
@@ -119,7 +121,7 @@ void print_dict(Dict dict, char* (*element_return)(void*)) {
     free(keys);
 }
 
-void resize_dict(Dict dict, const uint64 new_size) {
+ERROR_CODE resize_dict(Dict dict, const uint64 new_size) {
     Node* old_dict = dict->hashmap;
     dict->hashmap = calloc(new_size, sizeof(Node));
     uint64 old_size = dict->size;
@@ -133,4 +135,5 @@ void resize_dict(Dict dict, const uint64 new_size) {
         }
     }
     free(old_dict);
+    return EXIT_SUCCESS;
 }

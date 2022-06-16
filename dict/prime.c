@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 
+//todo cleanup
 bool is_prime(uint64 n)
 {
     if (n <= 3) return (bool)(n > 1);

@@ -1,8 +1,8 @@
 #ifndef PRIME_H
 #define PRIME_H
 
-#include <stdbool.h>
 #include "types.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <math.h>
 
