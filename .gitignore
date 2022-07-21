@@ -1,6 +1,8 @@
+*calculations.egg*
+calculations.c
 .vscode/*
-build/*
-dist/*
+*build*
+*dist*
 venv/*
 bin/*
 *.pyd

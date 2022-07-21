@@ -1,17 +1,17 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
+
 #include "../dict/headers/dict.h"
 
 typedef struct {
-    char* name;
-    char* pass;
-    char* email;
+    char *name;
+    char *pass;
+    char *email;
     bool active;
+} _User, *User;
 
-}_User, * User;
-
-User new_user(char* name, char* pass, char* email) {
+User new_user(char *name, char *pass, char *email) {
     User user = malloc(sizeof(_User));
     user->active = true;
     user->name = name;
@@ -20,9 +20,7 @@ User new_user(char* name, char* pass, char* email) {
     return user;
 }
 
-char* user_return_email(User user) {
-    return user->email;
-}
+char *user_return_email(User user) { return user->email; }
 
 int main() {
     Dict dict = new_dict(DEFAULT_SIZE);
@@ -49,16 +47,19 @@ int main() {
     int john_removed = dict_rem(dict, "John");
     int nonexistent_removed = dict_rem(dict, "Paulo");
     printf("Remove success, code: %d\n", john_removed);
-    printf("Remove failure (key doesn't exist), code: %d\n\n", nonexistent_removed);
+    printf("Remove failure (key doesn't exist), code: %d\n\n",
+           nonexistent_removed);
 
-    //* Searching means finding a node, dict_get will already return node->element (the value from k:v pair)
+    //* Searching means finding a node, dict_get will already return
+    // node->element (the value from k:v pair)
     User john_user = dict_get(dict, "John");
     User amber_user = dict_get(dict, "Amber");
-    printf("Find success, returns pointer: %p\n", (void*)amber_user);
-    printf("Find failure, returns pointer: %p\n\n", (void*)john_user);
+    printf("Find success, returns pointer: %p\n", (void *)amber_user);
+    printf("Find failure, returns pointer: %p\n\n", (void *)john_user);
 
     // Getting the object inside the node
-    printf("John details:\n Name: %s\n Pass: %s\n Email: %s\n\n", amber_user->name, amber_user->pass, amber_user->email);
+    printf("John details:\n Name: %s\n Pass: %s\n Email: %s\n\n",
+           amber_user->name, amber_user->pass, amber_user->email);
     // free(amber_user);
     // free(john_user);
 
