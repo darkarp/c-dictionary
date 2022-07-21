@@ -60,7 +60,10 @@ This works both on Windows, Linux and MacOS
         ```
 
 ### Usage
-**Every time you see a code block, you should run it in a `terminal` if you are on linux OR a `Developer: PowerShell for VS` if you're on Windows (This is installed with Visual Studio).**
+Every time you see a code block, you should run it in a:  
+  * `Terminal`: if you are on *Linux / MacOS*   
+  * `Developer: PowerShell for VS`: if you're on *Windows* (this is installed with Visual Studio, search for it)
+
   1. ### Clone the repo and go into it:
         ```
         git clone https://github.com/darkarp/c-dictionary
