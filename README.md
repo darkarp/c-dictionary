@@ -66,6 +66,7 @@ This works both on Windows, Linux and MacOS
         * Linux / MacOS: 
             ```bash
             apt update;
+            apt install -y python3 # if you don't have python3
             apt install -y python3-venv
             python3 -m venv venv
             source venv/bin/activate
