@@ -48,11 +48,13 @@ This works both on Windows, Linux and MacOS
 ---
 ## Getting started
 ### Requirements
+  * [Git](https://git-scm.com/downloads) for cloning the repo. Choose the correct installation for your OS.
   * Windows
     * [Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false): Install Visual Studio with `Desktop development with C++` selected
     * [GCC for windows](https://github.com/mstorsjo/llvm-mingw/releases) *(if don't have one already)*
       * Download and unzip the correct file for your platform (probably `msvcrt-x86_64`)
       * Add the `bin` directory in the unzipped folder to the `PATH` environment variable. [Here](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho) is a tutorial on how to add items to `PATH`
+    * [Python 3.10.5](https://www.python.org/ftp/python/3.10.5/python-3.10.5-amd64.exe): Any Python version above `3.8` works but make sure you check the box `add to path` on the last screen of the installation
   * Linux:
       * `Build essentials` (should be installed by default) and `python3` dependencies
         ```bash
