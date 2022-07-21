@@ -81,7 +81,7 @@ This works both on Windows, Linux and MacOS
             * Run this: `nmake all`  
             * For a quick help screen:
                 `nmake help`
-        * Linux
+        * Linux / MacOS
             * Run this: `make all`  
             * For a comprehensive help screen:
                 `make help`
