@@ -35,6 +35,17 @@
 * [Learn More](#learn-more)
 * [License](#license)
 ---
+## About the project  
+This is an implementation and usage example of a dictionary in C.  
+It supports:
+  * Hashing
+  * Collisions (keys must be different)
+  * String-like keys
+  * Some utility functions as shown in `src/main.c`
+
+This works both on Windows, Linux and MacOS
+
+---
 ## Getting started
 ### Requirements
   * [Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false): Install Visual Studio with `Desktop development with C++` selected
