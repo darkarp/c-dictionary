@@ -1,6 +1,6 @@
 # Simple dictionary in C
 
-<center>	
+<p align="center">	
     <img src="https://img.shields.io/maintenance/yes/2022" />
     <a href="https://github.com/darkarp/c-dictionary/commits/master">
     <img src="https://img.shields.io/github/last-commit/darkarp/c-dictionary" />
@@ -21,7 +21,7 @@
 <a href="https://www.whitehathacking.tech">
 	<img alt="Twitch Status" src="https://img.shields.io/badge/Website-visit-blue">
 </a>
-</center>
+</p>
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
