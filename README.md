@@ -96,7 +96,7 @@ It makes use of a C library for python. If you wish to run the `statistics/colli
 
   ### 1. Install the C module:
 ```bash
-python `statistics/setup.py install`
+python statistics/setup.py install
 ```
   ### 2. Run `statistics/collisions.py`
 ```bash
