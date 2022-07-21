@@ -48,7 +48,16 @@ This works both on Windows, Linux and MacOS
 ---
 ## Getting started
 ### Requirements
-  * [Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false): Install Visual Studio with `Desktop development with C++` selected
+  * Windows
+    * [Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false): Install Visual Studio with `Desktop development with C++` selected
+    * [GCC for windows](https://github.com/mstorsjo/llvm-mingw/releases)
+      * Download and unzip the one for your version of OS (probably `msvcrt-x86_64`)
+      * Add the `bin` folder inside to the `PATH` environment variable. [Here](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho) is a tutorial on how to add items to the `PATH`
+  * Linux:
+      * `Build essentials` (should be installed by default) and `python3` dependencies
+        ```bash
+        apt update; apt install build-essential python3 python3-venv -y
+        ```
 
 ### Usage
 **Every time you see a code block, you should run it in a `terminal` if you are on linux OR a `Developer: PowerShell for VS` if you're on Windows (This is installed with Visual Studio).**
@@ -65,9 +74,6 @@ This works both on Windows, Linux and MacOS
             ```
         * Linux / MacOS: 
             ```bash
-            apt update;
-            apt install -y python3 # if you don't have python3
-            apt install -y python3-venv
             python3 -m venv venv
             source venv/bin/activate
             ```
