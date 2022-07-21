@@ -105,4 +105,4 @@ join our:
 
 If you wish to contact me, you can do so via: `mario@whitehathacking.tech` 
 ## License
-<a href="https://github.com/darkarp/chromepass/blob/master/LICENSE"> AGPL-3.0 </a>
+<a href="https://github.com/darkarp/c-dictionary/blob/master/LICENSE"> AGPL-3.0 </a>
