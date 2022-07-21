@@ -50,7 +50,7 @@ This works both on Windows, Linux and MacOS
 ### Requirements
   * Windows
     * [Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false): Install Visual Studio with `Desktop development with C++` selected
-    * [GCC for windows](https://github.com/mstorsjo/llvm-mingw/releases)
+    * [GCC for windows](https://github.com/mstorsjo/llvm-mingw/releases) *(if don't have one already)*
       * Download and unzip the one for your version of OS (probably `msvcrt-x86_64`)
       * Add the `bin` folder inside to the `PATH` environment variable. [Here](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho) is a tutorial on how to add items to the `PATH`
   * Linux:
