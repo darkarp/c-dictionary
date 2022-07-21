@@ -87,7 +87,7 @@ This works both on Windows, Linux and MacOS
   5. Running the example `main.exe`
         * Windows: `.\bin\main.exe`
         * Linux / MacOS: `./bin/main`
-
+---
 ## Statistics Module (*optional*)
 This project comes with a python statistics script, located in: `statistics/collisions.py`. This is an educational script which computes the ratio of collisions for this dictionary for a particular predefined size of the dict. 
 
@@ -100,13 +100,15 @@ python `statistics/setup.py install`
   ### 2. Run `statistics/collisions.py`
 ```bash
 python statistics/collisions.py
-```
+```  
+---
 ## TODO
-    * Better documentation
-    * Utility functions
-    * Better stability check
-    * Multiple hash support
-    * File & membuffer I/O for saving/loading
+  * Better documentation
+  * Utility functions
+  * Better stability check
+  * Multiple hash support
+  * File & membuffer I/O for saving/loading
+  ---
 ## Learn More
 
 For access to a community full of aspiring computer security experts, ranging from the complete beginner to the seasoned veteran,
@@ -114,6 +116,8 @@ join our:
   * Discord Server: [WhiteHat Hacking discord](https://discord.gg/beczNYP)
   * Website: [Whitehat Hacking Website](https://www.whitehathacking.tech)
 
-If you wish to contact me, you can do so via: `mario@whitehathacking.tech` 
+If you wish to contact me, you can do so via: `mario@whitehathacking.tech`  
+
+---
 ## License
 <a href="https://github.com/darkarp/c-dictionary/blob/master/LICENSE"> AGPL-3.0 </a>
