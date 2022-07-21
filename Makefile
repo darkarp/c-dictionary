@@ -1,30 +1,60 @@
-TARGET=main
-CC=gcc
-CFLAGS=-g -Wall -Wextra -Werror -std=c11 -Wpedantic
-LDLIBS= -lm
-SRC=src
-BIN=bin
-OBJ=$(BIN)/obj
-LIB=dict
-LIB_SOURCES=$(LIB)/dict.c $(LIB)/hashutils.c $(LIB)/node.c $(LIB)/prime.c
-OBJ_SOURCES=$(OBJ)/dict.o $(OBJ)/hashutils.o $(OBJ)/node.o $(OBJ)/prime.o
+TARGET:=main
+CC:=gcc
+CFLAGS:=-g -Wall -Wextra -Werror -std=c11 -Wpedantic -MD -MP -fsanitize=address
+LDLIBS:= -lm
+SRC:=src
+BIN:=bin
+OBJ:=$(BIN)/obj
+LIB:=dict
 
-all: $(OBJ) $(OBJ_SOURCES) $(TARGET).exe
-	@echo [+] Finished building
-$(OBJ_SOURCES): $(LIB)/*.c
-	$(CC) -c $(CFLAGS) $(LIB)/$(*F).c -o $*.o
+.DEFAULT_GOAL := help
 
-$(OBJ):
-	@mkdir "$(OBJ)";
+# search subdirs for pattern
+filesearch=	$(wildcard $1$2) $(foreach dir,$(wildcard $1*),$(call filesearch,$(dir)/,$2))
 
-$(TARGET).exe: $(SRC)/$(TARGET).c $(OBJ_SOURCES)
-		$(CC) $(CFLAGS) $? $(LDLIBS) -o $(BIN)/$@
-	
-clean: $(OBJ)
-	@cmd.exe /q /s /c rmdir /q /s $(BIN)
-	@echo [+] Clean completed
-	
+# check all subdirs for source files
+SOURCES		:=	$(call filesearch,$(SRC),*.c)	
+LIBSOURCES	:=	$(call filesearch,$(LIB),*.c)
 
-help:
-	@echo "nmake all:	builds entire program"
-	@echo "nmake clean:	cleans the bin directory"
+# remove main file					
+SOURCES		:=	$(filter-out %$(TARGET).c, $(SOURCES))									
+LIBSOURCES	:=	$(filter-out %test_io.c, $(LIBSOURCES))							
+
+# build object list
+OBJECTS:=	$(patsubst %.c, $(OBJ)/%.o, $(notdir $(SOURCES)))								
+LIBOBJECTS:=	$(patsubst %.c, $(OBJ)/%.o, $(notdir $(LIBSOURCES)))						
+
+# Create output directories
+create_output_directories:
+	$(shell mkdir -p $(BIN))
+	$(shell mkdir -p $(OBJ))
+
+all: objects build tests ## Builds the project (compiles everything) and tests it
+
+build: objects $(TARGET) ## Builds the project (compiles everything)
+$(OBJ)/%.o: $(SRC)/%.c
+	$(CC) -c $(CFLAGS) $^ -o $@
+
+$(TARGET): $(SRC)/$(TARGET).c $(OBJECTS) $(LIBOBJECTS)
+	@printf "\033[32m[i] Generating binary\033[0m\n"
+	$(CC) $(CFLAGS) $^ $(LDLIBS) -o $(BIN)/$@
+
+objects: create_output_directories
+	@printf "\033[32m[i] Compiling library\033[0m\n"
+$(OBJ)/%.o: $(LIB)/%.c
+	$(CC) -c $(CFLAGS) $^ -o $@
+
+clean: ## Deletes the build folder
+	@printf "\033[33m[i] Deleting build folder: $(BIN)\033[0m\n"
+	rm -rf $(BIN)
+
+run: clean objects build ## Cleans, builds and runs the program
+	./$(BIN)/$(TARGET)
+
+.PHONY: tests
+tests: ## Runs library tests
+	@printf "\033[33m[i] Skipping tests: not implemented\033[0m\n"
+
+.PHONY: help
+help: ## Display this help message
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-20s\033[0m %s\n", $$1, $$2}'
