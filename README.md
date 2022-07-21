@@ -55,7 +55,7 @@ This works both on Windows, Linux and MacOS
       * Download and unzip the correct file for your platform (probably `msvcrt-x86_64`)
       * Add the `bin` directory in the unzipped folder to the `PATH` environment variable. [Here](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho) is a tutorial on how to add items to `PATH`
     * [Python 3.10.5](https://www.python.org/ftp/python/3.10.5/python-3.10.5-amd64.exe): Any Python version above `3.8` works but make sure you check the box `add to path` on the last screen of the installation
-  * Linux:
+  * Linux *(update the installation for your distro if different)*:
       * `Build essentials` (should be installed by default) and `python3` dependencies
         ```bash
         apt update; apt install build-essential python3 python3-venv -y
