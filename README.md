@@ -109,6 +109,7 @@ python statistics/collisions.py
   * Better stability check
   * Multiple hash support
   * File & membuffer I/O for saving/loading
+  * Testing
   ---
 ## Learn More
 
