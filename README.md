@@ -10,7 +10,7 @@
 </a>
 	<br>
   <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20MacOS%20%7C%20Linux-green" />
-  
+  </br>
   <a href="https://discord.gg/beczNYP">
     <img src="https://img.shields.io/badge/discord-join-7289DA.svg?logo=discord&longCache=true&style=flat" />
   </a>
