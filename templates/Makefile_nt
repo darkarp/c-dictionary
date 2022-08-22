@@ -1,16 +1,16 @@
 TARGET=main
 CC=gcc
-CFLAGS=-g -Wall -Wextra -Werror -std=c11 -Wpedantic
+CFLAGS=-g -Wall -Wextra -Werror
 LDLIBS= -lm
 SRC=src
 BIN=bin
-OBJ=$(BIN)/obj
+OBJ=$(BIN)\obj
 LIB=dict
 LIB_SOURCES=$(LIB)/dict.c $(LIB)/hashutils.c $(LIB)/node.c $(LIB)/prime.c
 OBJ_SOURCES=$(OBJ)/dict.o $(OBJ)/hashutils.o $(OBJ)/node.o $(OBJ)/prime.o
 
 all: $(OBJ) $(OBJ_SOURCES) $(TARGET).exe
-	@echo Unmodified: $(**)
+	@echo Done
 $(OBJ_SOURCES): $(LIB)/*.c
 	$(CC) -c $(CFLAGS) $(LIB)/$(*F).c -o $*.o
 
@@ -19,3 +19,8 @@ $(OBJ):
 
 $(TARGET).exe: $(SRC)/$(TARGET).c $(OBJ_SOURCES)
 		$(CC) $(CFLAGS) $? $(LDLIBS) -o $(BIN)/$@
+clean: 
+	@del /s /q $(BIN)
+	@rmdir /s /q $(BIN)
+	@echo Done
+	

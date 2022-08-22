@@ -22,5 +22,5 @@ Element dict_get(Dict dict, const char* key);
 
 char** dict_keys(Dict dict);
 void** dict_to_array(Dict dict, ER);
-void print_dict(Dict dict, ER);
+void print_dict(Dict dict, ER, uint64 spacing);
 #endif

@@ -112,22 +112,29 @@ char* basic_element_return(Element element) {
     return element_return;
 }
 
-void print_dict(Dict dict, char* (*element_return)(void*)) {
-    if (!element_return)
-        element_return = basic_element_return;
+void print_dict(Dict dict, char* (*element_return)(void*), uint64 spacing) {
+    char* spaces = malloc(spacing + 1);
     char** keys = dict_keys(dict);
+    uint64 i = 0;
+    if (spacing)
+        for (; i < spacing;i++)
+            spaces[i] = ' ';
+    spaces[i] = '\0';
+    if (!element_return) element_return = basic_element_return;
+
     for (int i = 0; i < (int)dict->count; i++) {
         Node node = node_find(dict->hashmap, keys[i], dict->size);
         if (!node) {
-            printf("No node with this key: %s\n", keys[i]);
+            printf("%sNo node with this key: %s\n", spaces, keys[i]);
             break;
         }
         char* value = element_return(node->element);
-        printf("%s: %s\n", keys[i], value);
+        printf("%s%s: %s\n", spaces, keys[i], value);
         if (element_return == basic_element_return)
             free(value);
     }
     free(keys);
+    if (spaces) free(spaces);
 }
 
 ERROR_CODE resize_dict(Dict dict, const uint64 new_size) {

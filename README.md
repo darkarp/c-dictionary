@@ -89,11 +89,11 @@ Every time you see a code block, you should run it in a:
         ```
   4. Running the makefile
         * Windows  
-            * Run this: `nmake all`  
-            * For a quick help screen:
-                `nmake help`
+            * If cleanup is required: `nmake clean`
+            * Then run this: `nmake all`
         * Linux / MacOS
-            * Run this: `make all`  
+            * If cleanup is required: `make clean`
+            * Then run this: `make all`  
             * For a comprehensive help screen:
                 `make help`
   5. Running the example `main.exe`
@@ -119,7 +119,7 @@ python statistics/collisions.py
   * Utility functions
   * Better stability check
   * Multiple hash support
-  * File & membuffer I/O for saving/loading
+  * File & membuffer I/O for saving/loading (pickle)
   * Testing
   ---
 ## Learn More
