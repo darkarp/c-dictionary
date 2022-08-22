@@ -37,5 +37,5 @@ ccolpercent = 100*ccol/MAXITER
 
 print(f"## Number of collisions for {MAXITER} insertions ##\n")
 print(f"Collisions in even non-primes = {ATOTAL}: {acol} ({acolpercent:.2f}%)")
-print(f"Collisions in odd non-primes = {BTOTAL}: {bcol} ({bcolpercent:.2f}%)")
-print(f"Collisions in primes = {CTOTAL}: {ccol} ({ccolpercent:.2f}%)")
+print(f"Collisions in odd non-primes  = {BTOTAL}: {bcol} ({bcolpercent:.2f}%)")
+print(f"Collisions in primes          = {CTOTAL}: {ccol} ({ccolpercent:.2f}%)")
