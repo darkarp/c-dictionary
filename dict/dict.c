@@ -115,6 +115,10 @@ char* basic_element_return(Element element) {
 void print_dict(Dict dict, char* (*element_return)(void*), uint64 spacing) {
     char* spaces = malloc(spacing + 1);
     char** keys = dict_keys(dict);
+    if (!keys) {
+        free(spaces);
+        return;
+    }
     uint64 i = 0;
     if (spacing)
         for (; i < spacing;i++)
@@ -134,7 +138,7 @@ void print_dict(Dict dict, char* (*element_return)(void*), uint64 spacing) {
             free(value);
     }
     free(keys);
-    if (spaces) free(spaces);
+    free(spaces);
 }
 
 ERROR_CODE resize_dict(Dict dict, const uint64 new_size) {
