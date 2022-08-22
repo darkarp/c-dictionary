@@ -59,8 +59,6 @@ int main() {
 
     // Getting the object inside the node
     printf("John details:\n Name: %s\n Pass: %s\n Email: %s\n\n", amber_user->name, amber_user->pass, amber_user->email);
-    // free(amber_user);
-    // free(john_user);
 
     //* Printing the dict
     printf("Printing the dict with NULL:\n");
@@ -69,10 +67,10 @@ int main() {
     print_dict(dict, (ER)user_return_email);
 
     //? Freeing allocated memory for the users
-    free(slim);
-    free(steve);
-    free(amber);
-    free(john);
+    // free(slim);
+    // free(steve);
+    // free(amber);
+    // free(john);
 
     //* Freeing the entire dict from memory
     free_dict(dict);
