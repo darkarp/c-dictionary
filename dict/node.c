@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-Node new_node(const char *key, void *value) {
+Node new_node(const char* key, void* value) {
     uint64 size = strlen(key) + 1;
     Node node = malloc(sizeof(struct _Node));
     if (!node)
@@ -23,7 +23,7 @@ Node new_node(const char *key, void *value) {
     return node;
 }
 
-Node node_find(Node *nodes, const char *key, uint64 size) {
+Node node_find(Node* nodes, const char* key, uint64 size) {
     uint64 index = index_from_hash(hashed(key), size);
     for (Node knode = nodes[index]; knode; knode = knode->next)
         if (!memcmp(knode->key, key, strlen(key)))
@@ -31,17 +31,19 @@ Node node_find(Node *nodes, const char *key, uint64 size) {
     return NULL;
 }
 
-void node_del(Node node) {
+void node_del(Node node, void free_element(Element)) {
     if (node) {
-        node_del(node->next);
+        free_element(node->element);
+        node_del(node->next, free_element);
         free(node->key);
         free(node);
-    } else
+    }
+    else
         return;
 }
 
 Node node_return_self(Node node) { return node; }
 
-char *node_return_key(Node node) { return node->key; }
+char* node_return_key(Node node) { return node->key; }
 
 Element node_return_value(Node node) { return node->element; }

@@ -22,6 +22,10 @@ User new_user(char* name, char* pass, char* email) {
 
 char* user_return_email(User user) { return user->email; }
 
+void free_user(Element ele) {
+    free(ele);
+}
+
 int main() {
     Dict dict = new_dict(DEFAULT_SIZE);
     printf("Dict created with size: %llu\n\n", dict->size);
@@ -44,8 +48,8 @@ int main() {
     printf("Add failure (key exists), code: %d\n\n", jonh_readded);
 
     //* Removing key from dict
-    int john_removed = dict_rem(dict, "John");
-    int nonexistent_removed = dict_rem(dict, "Paulo");
+    int john_removed = dict_rem(dict, "John", free_user);
+    int nonexistent_removed = dict_rem(dict, "Paulo", free_user);
     printf("Remove success, code: %d\n", john_removed);
     printf("Remove failure (key doesn't exist), code: %d\n\n",
         nonexistent_removed);
@@ -66,14 +70,14 @@ int main() {
     printf("\nPrinting the dict with EMAIL:\n");
     print_dict(dict, (ER)user_return_email);
 
-    //? Freeing allocated memory for the users
+    //? Freeing allocated memory for the users - not recommended
     // free(slim);
     // free(steve);
     // free(amber);
     // free(john);
 
-    //* Freeing the entire dict from memory
-    free_dict(dict);
+    //* Freeing the entire dict from memory - recommended
+    free_dict(dict, free_user);
 
     printf("\nProgram exited successfully\n");
     return 0;
